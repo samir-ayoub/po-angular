@@ -47,7 +47,7 @@ export class PoButtonComponent extends PoButtonBaseComponent {
    * ```
    */
   focus(): void {
-    // if (this.disabled) return true;
+    if (this.disabled) return true;
 
     if (!this.disabled) {
       this.buttonElement.nativeElement.focus();
