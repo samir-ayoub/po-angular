@@ -1,0 +1,166 @@
+name: build and publish UI
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - run: npm install
+    - run: npm run build
+
+  publish-schematics:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-schematics --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-storage:
+    needs: [build, publish-schematics]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-storage --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-sync:
+    needs: [build, publish-schematics, publish-storage]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-sync --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-components:
+    needs: [build, publish-schematics]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-components --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-templates:
+    needs: [build, publish-schematics, publish-components]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-templates --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-code-editor:
+    needs: [build, publish-schematics, publish-components]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+    - name: Run publish with -next
+      run: npm publish dist/ng-code-editor --tag next
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Add "latest" tag
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ steps.package-version.outputs.current-version}}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
