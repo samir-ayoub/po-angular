@@ -1,6 +1,9 @@
 name: PO-UI Publish
 on:
   workflow_dispatch:
+  
+env: 
+  CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
 
 jobs:
   build:
@@ -18,9 +21,6 @@ jobs:
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
-      env: 
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
-
 
 
     - name: Run publish ng-schematics
@@ -29,8 +29,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -42,8 +42,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -55,8 +55,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -68,8 +68,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -81,8 +81,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -94,7 +94,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@{{ CURRENT_PACKAGE_VERSION }}
+      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
