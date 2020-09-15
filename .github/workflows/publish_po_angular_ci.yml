@@ -46,6 +46,8 @@ jobs:
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+
 
 
 
@@ -59,6 +61,8 @@ jobs:
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+
 
 
 
@@ -72,6 +76,8 @@ jobs:
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+
 
 
 
@@ -85,6 +91,8 @@ jobs:
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+
 
 
 
@@ -98,3 +106,4 @@ jobs:
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ env.CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
