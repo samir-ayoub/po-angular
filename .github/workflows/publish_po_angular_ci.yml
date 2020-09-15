@@ -1,6 +1,3 @@
-env: 
-  CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
-
 name: PO-UI Publish
 on:
   workflow_dispatch:
@@ -21,6 +18,8 @@ jobs:
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
+      env: 
+        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
 
 
 
