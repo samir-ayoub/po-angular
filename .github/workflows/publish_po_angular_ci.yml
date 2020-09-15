@@ -26,11 +26,11 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-schematics "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      
 
 
 
@@ -42,11 +42,11 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-storage "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      
 
 
 
@@ -57,11 +57,11 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-sync "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      
 
 
 
@@ -72,11 +72,11 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-components "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      
 
 
 
@@ -87,11 +87,11 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-templates "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      
 
 
 
@@ -102,8 +102,8 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add ng-code-editor "latest" tag
-      if: (!contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-next') && !contains(${{ env.CURRENT_PACKAGE_VERSION }}, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ env.CURRENT_PACKAGE_VERSION }}
+      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+      

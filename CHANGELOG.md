@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.3.0](https://github.com/po-ui/po-angular/compare/v3.1.0...v6.3.0) (2020-09-15)
+
+
+### Features
+
+* --access public ([c147ee2](https://github.com/po-ui/po-angular/commit/c147ee2cbfc07db220baff75cdd8594e7a53de4c))
+* concatenando env ([db4a823](https://github.com/po-ui/po-angular/commit/db4a82337a7284e9dfcfeb4780e061d0a0bf3c54))
+* corrige quebra ([bfac2ab](https://github.com/po-ui/po-angular/commit/bfac2abfad9685b0dcdf59282e9a039aaa5645ff))
+* define nomes ([b0bf964](https://github.com/po-ui/po-angular/commit/b0bf96420a4ad23c05648cd75606c03563163760))
+* env de novo ([d061c13](https://github.com/po-ui/po-angular/commit/d061c138af126446876658ac0c4311d2a5882156))
+* env dentro de package-version ([06fccda](https://github.com/po-ui/po-angular/commit/06fccdaa13f97df8230e0cf545c0abb5515e659a))
+* env pra fora ([00cb86c](https://github.com/po-ui/po-angular/commit/00cb86c911f7c22f7666afd6a25ee5e0f3519ab5))
+* envvv ([bd79a52](https://github.com/po-ui/po-angular/commit/bd79a5239b74b5885cf9d400b7eb0e0178df31e2))
+* erro concatenação ([14a4725](https://github.com/po-ui/po-angular/commit/14a4725a9807cb1c69db525f57e574f1265c84c0))
+* implementa ci para publicação ([887ce60](https://github.com/po-ui/po-angular/commit/887ce60cc3321fd9272b74c10707748db72e3a0e))
+* publica v6.1 ([7b9ddda](https://github.com/po-ui/po-angular/commit/7b9dddaa2b36827a2ccbd4de01cb9062862892d5))
+* teste env ([6d0d284](https://github.com/po-ui/po-angular/commit/6d0d284c6fec63c1bf13b0e06a2859e869baa7e0))
+
 ## [6.2.0](https://github.com/po-ui/po-angular/compare/v3.1.0...v6.2.0) (2020-09-15)
 
 
