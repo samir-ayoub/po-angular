@@ -15,19 +15,11 @@ jobs:
     - run: npm install
     - run: npm run build
 
-  publish-schematics:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
-
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
+
+
 
     - name: Run publish with -next
       run: npm publish dist/ng-schematics --tag next
@@ -40,19 +32,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-storage:
-    needs: [build, publish-schematics]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
 
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
 
     - name: Run publish with -next
       run: npm publish dist/ng-storage --tag next
@@ -65,19 +45,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-sync:
-    needs: [build, publish-schematics, publish-storage]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
 
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
 
     - name: Run publish with -next
       run: npm publish dist/ng-sync --tag next
@@ -90,19 +58,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-components:
-    needs: [build, publish-schematics]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
 
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
 
     - name: Run publish with -next
       run: npm publish dist/ng-components --tag next
@@ -115,19 +71,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-templates:
-    needs: [build, publish-schematics, publish-components]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
 
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
 
     - name: Run publish with -next
       run: npm publish dist/ng-templates --tag next
@@ -140,19 +84,7 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish-code-editor:
-    needs: [build, publish-schematics, publish-components]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://registry.npmjs.org'
 
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
 
     - name: Run publish with -next
       run: npm publish dist/ng-code-editor --tag next
