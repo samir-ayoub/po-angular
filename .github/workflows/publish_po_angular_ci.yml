@@ -31,7 +31,7 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -44,7 +44,7 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -70,7 +70,7 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -83,7 +83,7 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -96,6 +96,6 @@ jobs:
 
     - name: Add "latest" tag
       if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ CURRENT_PACKAGE_VERSION }}
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@{{ CURRENT_PACKAGE_VERSION }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
