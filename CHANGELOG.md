@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.2.0](https://github.com/po-ui/po-angular/compare/v3.1.0...v6.2.0) (2020-09-15)
+
+
+### Features
+
+* --access public ([c147ee2](https://github.com/po-ui/po-angular/commit/c147ee2cbfc07db220baff75cdd8594e7a53de4c))
+* implementa ci para publicação ([887ce60](https://github.com/po-ui/po-angular/commit/887ce60cc3321fd9272b74c10707748db72e3a0e))
+* publica v6.1 ([7b9ddda](https://github.com/po-ui/po-angular/commit/7b9dddaa2b36827a2ccbd4de01cb9062862892d5))
+
 ## [6.1.0](https://github.com/po-ui/po-angular/compare/v3.1.0...v6.1.0) (2020-09-15)
 
 

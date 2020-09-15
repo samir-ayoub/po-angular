@@ -1,4 +1,4 @@
-name: build and publish UI
+name: PO-UI Publish
 on:
   workflow_dispatch:
 
@@ -18,81 +18,84 @@ jobs:
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
+      env: CURRENT_PACKAGE_VERSION: 'steps.package-version.outputs.current-version'
+
+        
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-schematics
       run: npm publish dist/ng-schematics --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-storage
       run: npm publish dist/ng-storage --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-sync
       run: npm publish dist/ng-sync --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-components
       run: npm publish dist/ng-components --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-templates
       run: npm publish dist/ng-templates --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
 
-    - name: Run publish with -next
+    - name: Run publish ng-code-editor
       run: npm publish dist/ng-code-editor --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
-      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ steps.package-version.outputs.current-version}}
+      if: (!contains($CURRENT_PACKAGE_VERSION, '-next') && !contains($CURRENT_PACKAGE_VERSION, '-rc'))
+      run: npm dist-tags add @123samir/gonna-build-a-mountain-po-code-editor@${{ $CURRENT_PACKAGE_VERSION}}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
