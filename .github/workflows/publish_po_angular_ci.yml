@@ -22,7 +22,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-schematics --tag next
+      run: npm publish dist/ng-schematics --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -35,7 +35,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-storage --tag next
+      run: npm publish dist/ng-storage --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -48,7 +48,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-sync --tag next
+      run: npm publish dist/ng-sync --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -61,7 +61,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-components --tag next
+      run: npm publish dist/ng-components --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -74,7 +74,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-templates --tag next
+      run: npm publish dist/ng-templates --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -87,7 +87,7 @@ jobs:
 
 
     - name: Run publish with -next
-      run: npm publish dist/ng-code-editor --tag next
+      run: npm publish dist/ng-code-editor --tag next --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
