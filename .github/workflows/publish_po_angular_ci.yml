@@ -17,7 +17,7 @@ jobs:
         echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
 
     - name: print test
-      if: ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} === 6.6.0
+      if: ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} !== 6.6.0
       run: echo 'The selected color is' $SCHEMATICS_LAST_PUBLISHED_VERSION
 
     - run: npm install
