@@ -29,7 +29,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: ng-schematics add "latest" tag
-      if: (!contains(${{ PACKAGE_VERSION }}, '-next') && !contains(${{ PACKAGE_VERSION }}, '-rc'))
+      if: (!contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ steps.package-version.outputs.current-version }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
