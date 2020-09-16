@@ -23,8 +23,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    output1: install
-    output2: build
+    needs: build
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
