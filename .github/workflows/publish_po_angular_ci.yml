@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    output1: install
+    output2: build
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -12,15 +14,36 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
+      id: install
     - run: npm install
+
+      id: build
     - run: npm run build
+
+
+  publish:
+    runs-on: ubuntu-latest
+    output1: install
+    output2: build
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
+    - name: Check npm package latest version
+      uses: EndBug/version-check@v1
+    - id: check
+      with:
+        file-url: https://unpkg.com/your-package@latest/package.json
+        static-checking: localIsNew
 
-    - name: Run publish ng-schematics
+    - name: Publish ng-schematics
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -36,7 +59,7 @@ jobs:
 
 
 
-    - name: Run publish ng-storage
+    - name: Publish ng-storage
       run: npm publish dist/ng-storage --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -51,7 +74,7 @@ jobs:
 
 
 
-    - name: Run publish ng-sync
+    - name: Publish ng-sync
       run: npm publish dist/ng-sync --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -66,7 +89,7 @@ jobs:
 
 
 
-    - name: Run publish ng-components
+    - name: Publish ng-components
       run: npm publish dist/ng-components --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -81,7 +104,7 @@ jobs:
 
 
 
-    - name: Run publish ng-templates
+    - name: Publish ng-templates
       run: npm publish dist/ng-templates --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -96,7 +119,7 @@ jobs:
 
 
 
-    - name: Run publish ng-code-editor
+    - name: Publish ng-code-editor
       run: npm publish dist/ng-code-editor --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
