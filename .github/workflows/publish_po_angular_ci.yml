@@ -12,12 +12,13 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
-    - name: testeeee
+    - name: ng-schematics - check if current version has already been published
       run: |
-        echo ::set-env name=FOO::echo $(npm info @123samir/gonna-build-a-mountain-po-storage version)
+        echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
 
     - name: print test
-      run: echo 'The selected color is' $FOO
+      if: ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} === 6.6.0
+      run: echo 'The selected color is' $SCHEMATICS_LAST_PUBLISHED_VERSION
 
     - run: npm install
     - run: npm run build
@@ -32,6 +33,12 @@ jobs:
 
     # PUBLISH NG-SCHEMATICS
 
+
+    # - name: ng-schematics - check if current version has already been published
+    #   run: |
+    #     echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
+
+
     # Verifica se a versão que será publicada é superior à versão publicada no npm
     - name: ng-schematics - check if current version has already been published
       id: check-schematic-remote-v
@@ -42,7 +49,7 @@ jobs:
 
     - name: ng-schematics - publish
       # Se a versão remota for igual à versão que será publicada então ele pula o publish deste pacote e tenta publicar os demais pacotes
-      if: steps.check-schematic-remote-v.outputs.changed == 'true'
+      if: ${{ env. }}
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
