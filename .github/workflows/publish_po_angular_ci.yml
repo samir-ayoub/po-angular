@@ -27,7 +27,7 @@ jobs:
         file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-schematics@latest/package.json
         static-checking: localIsNew
 
-
+    - run: echo steps.check.outputs
 
     - name: ng-schematics publish
       if: steps.check.outputs.changed == 'true'
@@ -37,7 +37,6 @@ jobs:
 
     - name: ng-schematics add "latest" tag
       if: steps.check.outputs.changed == 'true' && !contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc')
-      run: echo steps.check.outputs
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
