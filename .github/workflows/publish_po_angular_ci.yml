@@ -77,7 +77,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: ng-components - add "latest" tag
-      if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
+      if: (!contains(steps.package-version.outputs.current-version, env.COMPONENTS_LAST_PUBLISHED_VERSION) && !contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ steps.package-version.outputs.current-version }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
