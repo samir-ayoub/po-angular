@@ -24,11 +24,16 @@ jobs:
     - name: ng-schematics - check if current version has already been published
       run: |
         echo 
-        ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version) && set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
+        ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version)
+        
+    - name: ng-storage - check if current version has already been published
+      run: |
+        echo 
+        ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
 
     - name: print test 2
       if: (contains(steps.package-version.outputs.current-version, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
-      run: echo last published ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} storage ${{ env.STORAGE }}
+      run: echo last published ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} storage ${{ env.STORAGE_LAST_PUBLISHED_VERSION }}
 
 
     # PUBLISH NG-SCHEMATICS
