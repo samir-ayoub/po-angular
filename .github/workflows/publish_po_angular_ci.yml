@@ -37,7 +37,6 @@ jobs:
 
     - name: ng-schematics add "latest" tag
       if: (steps.check.outputs.changed === true && !contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc'))
-      if: (!contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
