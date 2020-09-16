@@ -14,11 +14,11 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
-      id: install
-    - run: npm install
+    - id: install
+      run: npm install
 
-      id: build
-    - run: npm run build
+    - id: build
+      run: npm run build
 
 
   publish:
