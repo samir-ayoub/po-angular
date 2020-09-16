@@ -35,13 +35,6 @@ jobs:
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
-    - name: Check npm package latest version
-      uses: EndBug/version-check@v1
-    - id: check
-      with:
-        file-url: https://unpkg.com/your-package@latest/package.json
-        static-checking: localIsNew
-
     - name: Publish ng-schematics
       run: npm publish dist/ng-schematics --tag next
       env:
