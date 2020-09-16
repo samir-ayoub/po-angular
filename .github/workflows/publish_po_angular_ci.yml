@@ -20,10 +20,12 @@ jobs:
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
+    - name: testeeee
+      run: echo ::set-env name=FOO::$(echo -n "hello world")
 
 
     # PUBLISH NG-SCHEMATICS
-    
+
     # Verifica se a versão que será publicada é superior à versão publicada no npm
     - name: ng-schematics - check if current version has already been published
       id: check-schematic-remote-v
