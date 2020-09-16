@@ -12,8 +12,8 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
-    - run: npm install
-    - run: npm run build
+#     - run: npm install
+#     - run: npm run build
 
     # Pega a versão no package.json
     - name: Get package.json version
@@ -25,7 +25,7 @@ jobs:
       run: |
         echo 
         ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version) &&
-        ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
+          set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
 
     - name: print test 2
       if: (contains(steps.package-version.outputs.current-version, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
