@@ -15,6 +15,9 @@ jobs:
     - name: testeeee
       run: echo ::set-env name=FOO::$(echo -n "hello world")
 
+    - name: print test
+      run: echo 'The selected color is' $FOO
+
     - run: npm install
     - run: npm run build
 
