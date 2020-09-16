@@ -12,14 +12,8 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
-#     - run: npm install
-#     - run: npm run build
-
-    # Pega a versão no package.json
-    - name: Get package.json version.
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
-
+    - run: npm install
+    - run: npm run build
 
     # Pega a última versão dos pacotes publicados no npm e armazena em variáveis
     - run: echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version)
@@ -29,6 +23,10 @@ jobs:
     - run: echo ::set-env name=TEMPLATES_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-templates version)
     - run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-code-editor version)
 
+    # Pega a versão no package.json
+    - name: Get package.json version.
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
 
     # PUBLISH NG-SCHEMATICS
     - name: ng-schematics - publish
@@ -44,8 +42,6 @@ jobs:
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
-
 
     # PUBLISH NG-STORAGE
     - name: ng-storage - publish
@@ -60,8 +56,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-
-
     # PUBLISH NG-SYNC
     - name: ng-sync - publish 
       if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
@@ -75,8 +69,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-
-
     # PUBLISH NG-COMPONENTS
     - name: ng-components - publish
       if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
@@ -90,8 +82,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-
-
     # PUBLISH NG-TEMPLATES
     - name: ng-templates - publish
       if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
@@ -105,8 +95,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-
-
     # PUBLISH NG-CODE-EDITOR
     - name: ng-code-editor publish
       if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
