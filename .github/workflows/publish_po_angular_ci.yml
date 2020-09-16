@@ -18,7 +18,7 @@ jobs:
 
     - name: print test
       if: (!contains(${{ env.PACKAGE_VERSION }}, $SCHEMATICS_LAST_PUBLISHED_VERSION))
-      run: echo 'Não é a mesma versão' $SCHEMATICS_LAST_PUBLISHED_VERSION ${{ env.PACKAGE_VERSION }}
+      run: echo 'Não é a mesma versão' $SCHEMATICS_LAST_PUBLISHED_VERSION pacote local  $PACKAGE_VERSION
 
     - run: npm install
     - run: npm run build
