@@ -20,10 +20,17 @@ jobs:
       uses: martinbeentjes/npm-get-version-action@master
 
 
+    - name: Check if current version has been published
+      id: check
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-schematics@latest/package.json
+        static-checking: localIsNew
 
 
 
     - name: ng-schematics publish
+      if: steps.check.outputs.changed == 'true'
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
