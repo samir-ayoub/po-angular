@@ -12,6 +12,9 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
+    - name: testeeee
+      run: echo ::set-env name=FOO::$(echo -n "hello world")
+
     - run: npm install
     - run: npm run build
 
@@ -20,8 +23,7 @@ jobs:
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
-    - name: testeeee
-      run: echo ::set-env name=FOO::$(echo -n "hello world")
+
 
 
     # PUBLISH NG-SCHEMATICS
