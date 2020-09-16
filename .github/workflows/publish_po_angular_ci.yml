@@ -24,7 +24,7 @@ jobs:
         echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION:: $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
 
     - name: print test
-      if: (steps.package-version.outputs.current-version != ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }})
+      if: (steps.package-version.outputs.current-version == ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }})
       run: echo 'Não é a mesma versão' ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} pacato local ${{steps.package-version.outputs.current-version}}
 
     - run: npm install
