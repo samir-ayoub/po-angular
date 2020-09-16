@@ -18,13 +18,9 @@ jobs:
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
-
     - name: ng-schematics - check if current version has already been published
       run: |
         echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION:: $(npm view @123samir/gonna-build-a-mountain-po-schematics version)
-
-
-
 
     - uses: haya14busa/action-cond@v1
       id: condval
@@ -36,14 +32,14 @@ jobs:
       run: echo "${{ steps.condval.outputs.value }}"
 
 
-    - name: print test 2
-      # if: (!contains(steps.package-version.outputs.current-version, '${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }}'))
-      run: echo last published ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} local ${{steps.package-version.outputs.current-version}}
+#     - name: print test 2
+#         if: (!contains(steps.package-version.outputs.current-version, '${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }}'))
+#       run: echo last published ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} local ${{steps.package-version.outputs.current-version}}
 
-    - run: npm install
-    - run: npm run build
+#     - run: npm install
+#     - run: npm run build
 
-    P #ega a versão no package.json
+    # Pega a versão no package.json
     # - name: Get package.json version
     #   id: package-version
     #   uses: martinbeentjes/npm-get-version-action@master
