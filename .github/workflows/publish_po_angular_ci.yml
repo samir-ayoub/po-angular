@@ -21,7 +21,7 @@ jobs:
 
     - name: ng-schematics - check if current version has already been published
       run: |
-        echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
+        echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION:: $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
 
     - name: print test
       # if: ('3.0.0' == ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }})
