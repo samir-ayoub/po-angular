@@ -30,30 +30,10 @@ jobs:
     - run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-code-editor version)
 
 
-
-
-
-
-
-
     # PUBLISH NG-SCHEMATICS
-
-
-    # - name: ng-schematics - check if current version has already been published
-    #   run: |
-    #     echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
-
-
-    # Verifica se a versão que será publicada é superior à versão publicada no npm
-    - name: ng-schematics - check if current version has already been published
-      id: check-schematic-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-schematics@latest/package.json
-        static-checking: localIsNew
-
     - name: ng-schematics - publish
       # Se a versão remota for igual à versão que será publicada então ele pula o publish deste pacote e tenta publicar os demais pacotes
+      if: (!contains(steps.package-version.outputs.current-version, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -68,16 +48,8 @@ jobs:
 
 
     # PUBLISH NG-STORAGE
-
-    - name: ng-storage - check if current version has already been published
-      id: check-storage-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-storage@latest/package.json
-        static-checking: localIsNew
-
     - name: ng-storage - publish
-      if: steps.check-storage-remote-v.outputs.changed == 'true'
+      if: (!contains(steps.package-version.outputs.current-version, env.STORAGE_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-storage --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -91,16 +63,8 @@ jobs:
 
 
     # PUBLISH NG-SYNC
-
-    - name: ng-sync - check if current version has already been published
-      id: check-sync-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-sync@latest/package.json
-        static-checking: localIsNew
-
     - name: ng-sync - publish 
-      if: steps.check-sync-remote-v.outputs.changed == 'true'
+      if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-sync --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -114,17 +78,8 @@ jobs:
 
 
     # PUBLISH NG-COMPONENTS
-
-    - name: ng-components - check if current version has already been published
-      id: check-components-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-components@latest/package.json
-        static-checking: localIsNew
-
-
     - name: ng-components - publish
-      if: steps.check-components-remote-v.outputs.changed == 'true'
+      if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-components --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -138,16 +93,8 @@ jobs:
 
 
     # PUBLISH NG-TEMPLATES
-
-    - name: ng-templates - check if current version has already been published
-      id: check-templates-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-templates@latest/package.json
-        static-checking: localIsNew  
-
     - name: ng-templates - publish
-      if: steps.check-templates-remote-v.outputs.changed == 'true'
+      if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-templates --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -161,16 +108,8 @@ jobs:
 
 
     # PUBLISH NG-CODE-EDITOR
-
-    - name: ng-code-editor - check if current version has already been published
-      id: check-code-editor-remote-v
-      uses: EndBug/version-check@v1
-      with:
-        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-code-editor@latest/package.json
-        static-checking: localIsNew
-
     - name: ng-code-editor publish
-      if: steps.check-code-editor-remote-v.outputs.changed == 'true'
+      if: (!contains(steps.package-version.outputs.current-version, env.SYNC_LAST_PUBLISHED_VERSION))
       run: npm publish dist/ng-code-editor --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
