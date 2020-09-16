@@ -22,12 +22,12 @@ jobs:
 
 
     # Pega a última versão dos pacotes publicados no npm e armazena em variáveis
-      run: echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version)
-      run: echo ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
-      run: echo ::set-env name=SYNC_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-sync version)
-      run: echo ::set-env name=COMPONENTS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-components version)
-      run: echo ::set-env name=TEMPLATES_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-templates version)
-      run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-code-editor version)
+    - run: echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-schematics version)
+    - run: echo ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-storage version)
+    - run: echo ::set-env name=SYNC_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-sync version)
+    - run: echo ::set-env name=COMPONENTS_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-components version)
+    - run: echo ::set-env name=TEMPLATES_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-templates version)
+    - run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view @123samir/gonna-build-a-mountain-po-code-editor version)
 
 
 
