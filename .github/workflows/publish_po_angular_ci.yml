@@ -13,7 +13,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: testeeee
-      run: echo ::set-env name=FOO::$(echo -n "hello world")
+      run: echo ::set-env name=FOO::$(echo -n npm info @123samir/gonna-build-a-mountain-po-storage version)
 
     - name: print test
       run: echo 'The selected color is' $FOO
