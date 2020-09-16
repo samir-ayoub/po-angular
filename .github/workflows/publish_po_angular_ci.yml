@@ -49,7 +49,6 @@ jobs:
 
     - name: ng-schematics - publish
       # Se a versão remota for igual à versão que será publicada então ele pula o publish deste pacote e tenta publicar os demais pacotes
-      if: ${{ env. }}
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
