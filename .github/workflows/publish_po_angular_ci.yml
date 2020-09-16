@@ -15,25 +15,31 @@ jobs:
     - run: npm install
     - run: npm run build
 
+    # Pega a versão no package.json
     - name: Get package.json version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
 
+
+    # PUBLISH NG-SCHEMATICS
+    
+    # Verifica se a versão que será publicada é superior à versão publicada no npm
     - name: ng-schematics - check if current version has already been published
-      id: check
+      id: check-schematic-remote-v
       uses: EndBug/version-check@v1
       with:
         file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-schematics@latest/package.json
         static-checking: localIsNew
 
-    - name: ng-schematics publish
-      if: steps.check.outputs.changed == 'true'
+    - name: ng-schematics - publish
+      # Se a versão remota for igual à versão que será publicada então ele pula o publish deste pacote e tenta publicar os demais pacotes
+      if: steps.check-schematic-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-schematics --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: ng-schematics add "latest" tag
+    - name: ng-schematics - add "latest" tag
       if: (!contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.PACKAGE_VERSION }}
       env:
@@ -42,20 +48,22 @@ jobs:
       
 
 
-    - name: ng-storage - Check if current version has already been published
-      id: check2
+    # PUBLISH NG-STORAGE
+
+    - name: ng-storage - check if current version has already been published
+      id: check-storage-remote-v
       uses: EndBug/version-check@v1
       with:
         file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-storage@latest/package.json
         static-checking: localIsNew
 
-    - name: ng-storage publish
-      if: steps.check2.outputs.changed == 'true'
+    - name: ng-storage - publish
+      if: steps.check-storage-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-storage --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: ng-storage add "latest" tag
+    - name: ng-storage - add "latest" tag
       if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-storage@${{ steps.package-version.outputs.current-version }}
       env:
@@ -63,14 +71,22 @@ jobs:
       
 
 
+    # PUBLISH NG-SYNC
 
+    - name: ng-sync - check if current version has already been published
+      id: check-sync-remote-v
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-sync@latest/package.json
+        static-checking: localIsNew
 
-    - name: ng-sync publish 
+    - name: ng-sync - publish 
+      if: steps.check-sync-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-sync --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: ng-sync add "latest" tag
+    - name: ng-sync - add "latest" tag
       if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-sync@${{ steps.package-version.outputs.current-version }}
       env:
@@ -78,14 +94,23 @@ jobs:
       
 
 
+    # PUBLISH NG-COMPONENTS
+
+    - name: ng-components - check if current version has already been published
+      id: check-components-remote-v
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-components@latest/package.json
+        static-checking: localIsNew
 
 
-    - name: ng-components publish
+    - name: ng-components - publish
+      if: steps.check-components-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-components --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: ng-components add "latest" tag
+    - name: ng-components - add "latest" tag
       if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-components@${{ steps.package-version.outputs.current-version }}
       env:
@@ -93,14 +118,22 @@ jobs:
       
 
 
+    # PUBLISH NG-TEMPLATES
 
+    - name: ng-templates - check if current version has already been published
+      id: check-templates-remote-v
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-templates@latest/package.json
+        static-checking: localIsNew  
 
-    - name: ng-templates publish 
+    - name: ng-templates - publish
+      if: steps.check-templates-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-templates --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: ng-templates add "latest" tag
+    - name: ng-templates - add "latest" tag
       if: (!contains(steps.package-version.outputs.current-version, '-next') && !contains(steps.package-version.outputs.current-version, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-templates@${{ steps.package-version.outputs.current-version }}
       env:
@@ -108,9 +141,17 @@ jobs:
       
 
 
+    # PUBLISH NG-CODE-EDITOR
 
+    - name: ng-code-editor - check if current version has already been published
+      id: check-code-editor-remote-v
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-code-editor@latest/package.json
+        static-checking: localIsNew
 
     - name: ng-code-editor publish
+      if: steps.check-code-editor-remote-v.outputs.changed == 'true'
       run: npm publish dist/ng-code-editor --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
