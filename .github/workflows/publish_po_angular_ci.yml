@@ -20,14 +20,12 @@ jobs:
       uses: martinbeentjes/npm-get-version-action@master
 
 
-    - name: Check if current version has been published
+    - name: ng-schematics - check if current version has already been published
       id: check
       uses: EndBug/version-check@v1
       with:
         file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-schematics@latest/package.json
         static-checking: localIsNew
-
-    - run: echo ${{ steps.check.outputs }}
 
     - name: ng-schematics publish
       if: steps.check.outputs.changed == 'true'
@@ -36,7 +34,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: ng-schematics add "latest" tag
-      if: steps.check.outputs.changed == 'true' && !contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc')
+      if: (!contains(${{ env.PACKAGE_VERSION }}, '-next') && !contains(${{ env.PACKAGE_VERSION }}, '-rc'))
       run: npm dist-tags add @123samir/gonna-build-a-mountain-po-schematics@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
@@ -44,10 +42,15 @@ jobs:
       
 
 
-
-
+    - name: ng-storage - Check if current version has already been published
+      id: check2
+      uses: EndBug/version-check@v1
+      with:
+        file-url: https://unpkg.com/@123samir/gonna-build-a-mountain-po-storage@latest/package.json
+        static-checking: localIsNew
 
     - name: ng-storage publish
+      if: steps.check2.outputs.changed == 'true'
       run: npm publish dist/ng-storage --tag next
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
