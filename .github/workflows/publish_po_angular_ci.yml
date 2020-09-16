@@ -25,7 +25,7 @@ jobs:
 
     - name: print test
       if: ('3.0.0' == ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }})
-      run: echo 'Não é a mesma versão' $SCHEMATICS_LAST_PUBLISHED_VERSION pacote local ${{steps.package-version.outputs.current-version}}
+      run: echo 'Não é a mesma versão' $SCHEMATICS_LAST_PUBLISHED_VERSION pacato local ${{steps.package-version.outputs.current-version}}
 
     - run: npm install
     - run: npm run build
