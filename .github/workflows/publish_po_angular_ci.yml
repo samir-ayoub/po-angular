@@ -12,6 +12,12 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
 
+    # Pega a versão no package.json
+    - name: Get package.json version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+
+
     - name: ng-schematics - check if current version has already been published
       run: |
         echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::echo $(npm info @123samir/gonna-build-a-mountain-po-schematics version)
@@ -22,10 +28,7 @@ jobs:
     - run: npm install
     - run: npm run build
 
-    # Pega a versão no package.json
-    - name: Get package.json version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
+
 
 
 
