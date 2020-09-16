@@ -33,7 +33,7 @@ jobs:
 
 
     - name: print test 2
-      if: (!contains(steps.package-version.outputs.current-version, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
+      if: (contains(steps.package-version.outputs.current-version, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
       run: echo last published ${{ env.SCHEMATICS_LAST_PUBLISHED_VERSION }} local ${{steps.package-version.outputs.current-version}}
 
 #     - run: npm install
