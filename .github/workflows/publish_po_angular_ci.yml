@@ -32,7 +32,7 @@ jobs:
     - name: ng-schematics - publish
       # Se a versão remota for igual à versão que será publicada então ele pula o publish deste pacote e tenta publicar os demais pacotes
       if: (!contains(env.PACKAGE_VERSION, env.SCHEMATICS_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-schematics --tag next
+      run: npm publish dist/ng-schematics
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -48,7 +48,7 @@ jobs:
     # PUBLISH NG-STORAGE
     - name: ng-storage - publish
       if: (!contains(env.PACKAGE_VERSION, env.STORAGE_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-storage --tag next
+      run: npm publish dist/ng-storage
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
     # PUBLISH NG-SYNC
     - name: ng-sync - publish 
       if: (!contains(env.PACKAGE_VERSION, env.SYNC_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-sync --tag next
+      run: npm publish dist/ng-sync
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
     # PUBLISH NG-COMPONENTS
     - name: ng-components - publish
       if: (!contains(env.PACKAGE_VERSION, env.COMPONENTS_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-components --tag next
+      run: npm publish dist/ng-components
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -93,7 +93,7 @@ jobs:
     # PUBLISH NG-TEMPLATES
     - name: ng-templates - publish
       if: (!contains(env.PACKAGE_VERSION, env.TEMPLATES_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-templates --tag next
+      run: npm publish dist/ng-templates
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -108,7 +108,7 @@ jobs:
     # PUBLISH NG-CODE-EDITOR
     - name: ng-code-editor publish
       if: (!contains(env.PACKAGE_VERSION, env.CODE_EDITOR_LAST_PUBLISHED_VERSION))
-      run: npm publish dist/ng-code-editor --tag next
+      run: npm publish dist/ng-code-editor
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
