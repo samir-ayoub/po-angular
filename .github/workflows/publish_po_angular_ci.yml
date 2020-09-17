@@ -6,7 +6,7 @@ env:
   SYNC_NPM_PATH: 123samir/gonna-build-a-mountain-po-sync
   COMPONENTS_NPM_PATH: 123samir/gonna-build-a-mountain-po-components
   TEMPLATES_NPM_PATH: 123samir/gonna-build-a-mountain-po-templates
-  CODE_EDITOR_NPM_PATH: 123samir/gonna-build-a-mountain-po-code_editor
+  CODE_EDITOR_NPM_PATH: 123samir/gonna-build-a-mountain-po-code-editor
 
 on:
   workflow_dispatch:
