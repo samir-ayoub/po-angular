@@ -1,5 +1,6 @@
 name: PO-UI Publish
 
+# URL para os pacotes po-ui no npm
 env:
   SCHEMATICS_NPM_PATH: 123samir/gonna-build-a-mountain-po-schematics
   STORAGE_NPM_PATH: 123samir/gonna-build-a-mountain-po-storage
