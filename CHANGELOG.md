@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/po-ui/po-angular/compare/v4.0.0-next.0...v4.0.0) (2020-09-17)
+
 ## [4.0.0-next.0](https://github.com/po-ui/po-angular/compare/v4.0.0-rc.0...v4.0.0-next.0) (2020-09-17)
 
 ## [4.0.0-rc.0](https://github.com/po-ui/po-angular/compare/v3.1.0...v4.0.0-rc.0) (2020-09-17)
