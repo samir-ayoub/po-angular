@@ -1,12 +1,12 @@
 name: PO-UI Publish
 
 env:
-  SCHEMATICS_NPM_PATH: @123samir/gonna-build-a-mountain-po-schematics
-  STORAGE_NPM_PATH: @123samir/gonna-build-a-mountain-po-storage
-  SYNC_NPM_PATH: @123samir/gonna-build-a-mountain-po-sync
-  COMPONENTS_NPM_PATH: @123samir/gonna-build-a-mountain-po-components
-  TEMPLATES_NPM_PATH: @123samir/gonna-build-a-mountain-po-templates
-  CODE_EDITOR_NPM_PATH: @123samir/gonna-build-a-mountain-po-code_editor
+  SCHEMATICS_NPM_PATH: 123samir/gonna-build-a-mountain-po-schematics
+  STORAGE_NPM_PATH: 123samir/gonna-build-a-mountain-po-storage
+  SYNC_NPM_PATH: 123samir/gonna-build-a-mountain-po-sync
+  COMPONENTS_NPM_PATH: 123samir/gonna-build-a-mountain-po-components
+  TEMPLATES_NPM_PATH: 123samir/gonna-build-a-mountain-po-templates
+  CODE_EDITOR_NPM_PATH: 123samir/gonna-build-a-mountain-po-code_editor
 
 on:
   workflow_dispatch:
@@ -25,12 +25,12 @@ jobs:
     - run: npm run build
 
     # Pega a última versão dos pacotes publicados no npm e armazena em variáveis
-    - run: echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view ${{ env.SCHEMATICS_NPM_PATH }} version)
-    - run: echo ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view ${{ env.STORAGE_NPM_PATH }} version)
-    - run: echo ::set-env name=SYNC_LAST_PUBLISHED_VERSION::$(npm view ${{ env.SYNC_NPM_PATH }} version)
-    - run: echo ::set-env name=COMPONENTS_LAST_PUBLISHED_VERSION::$(npm view ${{ env.COMPONENTS_NPM_PATH }} version)
-    - run: echo ::set-env name=TEMPLATES_LAST_PUBLISHED_VERSION::$(npm view ${{ env.TEMPLATES_NPM_PATH }} version)
-    - run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view ${{ env.CODE_EDITOR_NPM_PATH }} version)
+    - run: echo ::set-env name=SCHEMATICS_LAST_PUBLISHED_VERSION::$(npm view @${{ env.SCHEMATICS_NPM_PATH }} version)
+    - run: echo ::set-env name=STORAGE_LAST_PUBLISHED_VERSION::$(npm view @${{ env.STORAGE_NPM_PATH }} version)
+    - run: echo ::set-env name=SYNC_LAST_PUBLISHED_VERSION::$(npm view @${{ env.SYNC_NPM_PATH }} version)
+    - run: echo ::set-env name=COMPONENTS_LAST_PUBLISHED_VERSION::$(npm view @${{ env.COMPONENTS_NPM_PATH }} version)
+    - run: echo ::set-env name=TEMPLATES_LAST_PUBLISHED_VERSION::$(npm view @${{ env.TEMPLATES_NPM_PATH }} version)
+    - run: echo ::set-env name=CODE_EDITOR_LAST_PUBLISHED_VERSION::$(npm view @${{ env.CODE_EDITOR_NPM_PATH }} version)
 
     # Pega a versão no package.json
     - name: Get package.json version.
@@ -49,7 +49,7 @@ jobs:
     - name: ng-schematics - add "latest" tag
     
       if: (!contains(env.PACKAGE_VERSION, env.SCHEMATICS_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.SCHEMATICS_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.SCHEMATICS_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -64,7 +64,7 @@ jobs:
 
     - name: ng-storage - add "latest" tag
       if: (!contains(env.PACKAGE_VERSION, env.STORAGE_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.STORAGE_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.STORAGE_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -79,7 +79,7 @@ jobs:
 
     - name: ng-sync - add "latest" tag
       if: (!contains(env.PACKAGE_VERSION, env.SYNC_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.SYNC_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.SYNC_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -94,7 +94,7 @@ jobs:
 
     - name: ng-components - add "latest" tag
       if: (!contains(env.PACKAGE_VERSION, env.COMPONENTS_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.COMPONENTS_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.COMPONENTS_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -109,7 +109,7 @@ jobs:
 
     - name: ng-templates - add "latest" tag
       if: (!contains(env.PACKAGE_VERSION, env.TEMPLATES_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.TEMPLATES_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.TEMPLATES_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -124,7 +124,7 @@ jobs:
 
     - name: ng-code-editor add "latest" tag
       if: (!contains(env.PACKAGE_VERSION, env.CODE_EDITOR_LAST_PUBLISHED_VERSION) && !contains(env.PACKAGE_VERSION, '-next') && !contains(env.PACKAGE_VERSION, '-rc'))
-      run: npm dist-tags add ${{ env.CODE_EDITOR_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
+      run: npm dist-tags add @${{ env.CODE_EDITOR_NPM_PATH }}@${{ env.PACKAGE_VERSION }}
       env:
         PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version }}
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
